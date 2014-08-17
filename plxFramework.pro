@@ -100,9 +100,12 @@ macx {
 windows {
   message(WINDOWS BUILD SELECTED)
   INCLUDEPATH += c:/usr/include
+#  INCLUDEPATH += ../include
+#  INCLUDEPATH += ../include/taglib
 
   LIBS += -Lc:/usr/lib
-  LIBS += -ltag
+#  LIBS += -L../lib/taglib
+#  LIBS += -ltag
 }
 
 message(The project will be built in $$OUT_PWD)
