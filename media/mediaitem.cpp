@@ -1,15 +1,15 @@
 #include "mediaitem.h"
 
 #ifndef Q_OS_ANDROID
-#include <taglib/mpegfile.h>
-#include <taglib/fileref.h>
-#include <taglib/tstring.h>
-#include <taglib/id3v2tag.h>
-#include <taglib/attachedpictureframe.h>
-#include <taglib/vorbisfile.h>
-#include <taglib/oggfile.h>
-#include <taglib/oggflacfile.h>
-#include <taglib/flacfile.h>
+//#include <taglib/mpegfile.h>
+//#include <taglib/fileref.h>
+//#include <taglib/tstring.h>
+//#include <taglib/id3v2tag.h>
+//#include <taglib/attachedpictureframe.h>
+//#include <taglib/vorbisfile.h>
+//#include <taglib/oggfile.h>
+//#include <taglib/oggflacfile.h>
+//#include <taglib/flacfile.h>
 #endif
 
 #include "../utils/log.h"
@@ -356,42 +356,44 @@ bool CMediaItem::loadFromFile(const QString &strFileName)
 bool CMediaItem::loadTags(const QString &strFileName)
 {
 #ifndef Q_OS_ANDROID
-  //! encodedName shall be valid as long as fileName exists
-  CLog::log(LOG_INFO, "MEDIAITEM", "Loading tags for: " + strFileName);
+//PAULOPINA - REMOVER TAGLIB
+//  //! encodedName shall be valid as long as fileName exists
+//  CLog::log(LOG_INFO, "MEDIAITEM", "Loading tags for: " + strFileName);
 
-  QByteArray fileName = QFile::encodeName(strFileName);
-  const char * encodedName = fileName.constData();
+//  QByteArray fileName = QFile::encodeName(strFileName);
+//  const char * encodedName = fileName.constData();
 
-  //! TagLib reference
-  CLog::log(LOG_DEBUG, "MEDIAITEM", "Loading...", "Taglib");
-  TagLib::FileRef fileref = TagLib::FileRef(encodedName, true);
+//  //! TagLib reference
+//  CLog::log(LOG_DEBUG, "MEDIAITEM", "Loading...", "Taglib");
+//  TagLib::FileRef fileref = TagLib::FileRef(encodedName, true);
 
-  if (fileref.isNull())
-  {
-    CLog::log(LOG_ERROR, "MEDIAITEM", "Tag access failed. Marked as broken " + strFileName, "Taglib");
-    m_songInfo->setBroken(true);
-    return false;
-  }
-  else
-  {
-    CLog::log(LOG_DEBUG, "MEDIAITEM", "Ready to go...", "Taglib");
-  }
+//  if (fileref.isNull())
+//  {
+//    CLog::log(LOG_ERROR, "MEDIAITEM", "Tag access failed. Marked as broken " + strFileName, "Taglib");
+//    m_songInfo->setBroken(true);
+//    return false;
+//  }
+//  else
+//  {
+//    CLog::log(LOG_DEBUG, "MEDIAITEM", "Ready to go...", "Taglib");
+//  }
 
-  //! Lenght reading
-  CLog::log(LOG_DEBUG, "MEDIAITEM", "Reading file length", "Taglib");
-  TagLib::AudioProperties *audioProperties = fileref.audioProperties();
-  if (audioProperties)
-  {
-    m_songInfo->setLenght(lenghtFromInt(audioProperties->length())); // Returns the length of the file in format mm:ss
-    CLog::log(LOG_DEBUG, "MEDIAITEM", "File length: " + audioProperties->length(), "Taglib");
-  }
-  else
-  {
-    CLog::log(LOG_ERROR, "MEDIAITEM", "File length read failed. Marked as broken", "Taglib");
-    m_songInfo->setLenght("");
-    m_songInfo->setBroken(true);
-    return false;
-  }
+//  //! Lenght reading
+//  CLog::log(LOG_DEBUG, "MEDIAITEM", "Reading file length", "Taglib");
+//  TagLib::AudioProperties *audioProperties = fileref.audioProperties();
+//  if (audioProperties)
+//  {
+//    m_songInfo->setLenght(lenghtFromInt(audioProperties->length())); // Returns the length of the file in format mm:ss
+//    CLog::log(LOG_DEBUG, "MEDIAITEM", "File length: " + audioProperties->length(), "Taglib");
+//  }
+//  else
+//  {
+//    CLog::log(LOG_ERROR, "MEDIAITEM", "File length read failed. Marked as broken", "Taglib");
+//    m_songInfo->setLenght("");
+//    m_songInfo->setBroken(true);
+//    return false;
+//  }
+//FIM PAULOPINA: REMOVER TAGLIB
 
   //! Tag reading
 //  CLog::log(LOG_DEBUG, "MEDIAITEM", "Reading main tags", "Taglib");
